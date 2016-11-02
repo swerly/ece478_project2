@@ -16,8 +16,10 @@ public class PartTwo {
     public void start(){
         nodes = new ArrayList<>();
 
+        System.out.println("\n\n ------ PART TWO BEGIN ------");
         parseAndPopulate();
         performAnalysis();
+        System.out.println("\n ------ PART TWO END ------\n");
 
     }
 
@@ -56,6 +58,8 @@ public class PartTwo {
         int tDegree, bin1=0, bin2_5=0, bin5_100=0, bin100_200=0, bin200_1000=0, bin1000plus=0;
         int why = 0;
 
+        int enterprise=0, content=0, transit=0;
+
         for (Node node : nodes){
             tDegree = node.calculateDegree();
 
@@ -74,12 +78,23 @@ public class PartTwo {
             } else if (tDegree >= 1000){
                 bin1000plus++;
             }
+
+            if (node.getDegree() <= 2 && node.getCustomers().size() == 0 && node.getPeers().size() == 0) {
+                enterprise++;
+            } else if (node.getCustomers().size() ==  0 && node.getPeers().size() >= 1) {
+                content++;
+            } else if (node.getCustomers().size() >= 1){
+                transit++;
+            }
         }
         float binTot = bin1+bin2_5+bin5_100+bin100_200+bin200_1000+bin1000plus;
         System.out.printf("Total nodes: %s\n", nodes.size());
         System.out.printf("\n1: %f\n2-5: %f\n5-100: %f\n100-200: %f\n200-1000: %f\n1000+: %f\n",
                 bin1/binTot, bin2_5/binTot, bin5_100/binTot, bin100_200/binTot, bin200_1000/binTot, bin1000plus/binTot);
         if (why > 0) System.out.println("WHY: " + why);
+
+        System.out.printf("\nE: %d   C: %d   T: %d\n", enterprise, content, transit);
+        System.out.printf("Leftover: %d\n", nodes.size()-(content+transit+enterprise));
     }
 
     private void firstFieldHandle(){

@@ -7,11 +7,11 @@ import part_one.PartOne;
 public class Source {
 
     public static void main(String[] args){
-        PartOne p1 = new PartOne();
+        //PartOne p1 = new PartOne();
 
-        p1.execute();
+        //p1.execute();
 
-        //PartTwo p2 = new PartTwo();
-        //p2.start();
+        PartTwo p2 = new PartTwo();
+        p2.start();
     }
 }
