@@ -1,5 +1,6 @@
 import part_two.PartTwo;
 import part_one.PartOne;
+import part_three.PartThree;
 
 /**
  * Created by sethw on 10/31/2016.
@@ -13,5 +14,10 @@ public class Source {
 
         PartTwo p2 = new PartTwo();
         p2.start();
+
+        PartThree p3 = new PartThree();
+        p3.run(p2.getNodes());
+
+
     }
 }
