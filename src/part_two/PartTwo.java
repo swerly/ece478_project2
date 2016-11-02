@@ -16,11 +16,7 @@ public class PartTwo {
     public void start(){
         nodes = new ArrayList<>();
 
-        long startTime = System.currentTimeMillis();
         parseAndPopulate();
-        long endTime   = System.currentTimeMillis();
-        long totalTime = endTime - startTime;
-        System.out.println(totalTime);
         performAnalysis();
 
     }
@@ -80,6 +76,7 @@ public class PartTwo {
             }
         }
         float binTot = bin1+bin2_5+bin5_100+bin100_200+bin200_1000+bin1000plus;
+        System.out.printf("Total nodes: %s\n", nodes.size());
         System.out.printf("\n1: %f\n2-5: %f\n5-100: %f\n100-200: %f\n200-1000: %f\n1000+: %f\n",
                 bin1/binTot, bin2_5/binTot, bin5_100/binTot, bin100_200/binTot, bin200_1000/binTot, bin1000plus/binTot);
         if (why > 0) System.out.println("WHY: " + why);
@@ -136,5 +133,9 @@ public class PartTwo {
         else if (Integer.parseInt(fieldsCurLine[2]) == -1){
             tNode.addProvider(Integer.parseInt(fieldsCurLine[0]));
         }
+    }
+
+    public ArrayList<Node> getNodes(){
+        return this.nodes;
     }
 }
